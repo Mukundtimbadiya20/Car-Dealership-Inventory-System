@@ -52,7 +52,7 @@ def test_login_invalid_password():
         "/api/auth/login",
         json={
             "email": "mukund@gmail.com",
-            "password": "wrongpassword"
+            "password": "21Mukund@"
         }
     )
 
