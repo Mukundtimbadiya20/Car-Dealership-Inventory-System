@@ -1,6 +1,6 @@
 from fastapi import APIRouter, Depends, Query
 from sqlalchemy.orm import Session
-
+from app.dependencies import get_current_admin
 from app.database import get_db
 from app.inventory.service import purchase_vehicle, restock_vehicle
 
@@ -22,6 +22,7 @@ def purchase(
 def restock(
     vehicle_id: int,
     quantity: int = Query(...),
-    db: Session = Depends(get_db)
+    db: Session = Depends(get_db),
+    admin=Depends(get_current_admin),
 ):
     return restock_vehicle(db, vehicle_id, quantity)
